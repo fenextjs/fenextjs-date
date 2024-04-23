@@ -115,6 +115,12 @@ export class FenextjsDate<F extends string> extends Date {
             DateByCalendar.push(new Date(DATE.getTime()));
             DATE.setDate(DATE.getDate() + 1);
         }
+        const n = 7 - DateByCalendar.length % 7
+        for (let i = 0; i < n; i++) {
+            DateByCalendar.push(new Date(DATE.getTime()));
+            DATE.setDate(DATE.getDate() + 1);
+            
+        }
         this.DateByCalendar = DateByCalendar;
         return DateByCalendar;
     }
