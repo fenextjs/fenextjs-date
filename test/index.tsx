@@ -1,7 +1,13 @@
 import {FenextjsDate} from '../src'
 
-const D =  new FenextjsDate()
+const D =  new FenextjsDate({
+    onCallback:(e)=>{
+        console.log({e});
+        
+    }
+})
 
+D.addDate(10)
 
 const C = D.onGenerateDateByCalendar()
 console.log(C.length);
