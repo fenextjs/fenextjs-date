@@ -41,6 +41,10 @@ export class FenextjsDate<F extends string> extends Date {
         }
     }
 
+    setOnCallback(callback: (date: FenextjsDate<F>) => void) {
+        this.onCallback = callback;
+    }
+
     addTime(time: number) {
         this.setTime(this.getTime() + time);
         this.onCallback?.(this);
