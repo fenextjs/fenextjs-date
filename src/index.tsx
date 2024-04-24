@@ -1,9 +1,8 @@
-
 export interface FenextjsDateFormatOptions extends Intl.DateTimeFormatOptions {
     locales?: string | string[] | undefined;
 }
 export type FenextjsDateFormats = {
-    [id : string]: FenextjsDateFormatOptions;
+    [id: string]: FenextjsDateFormatOptions;
 };
 export interface FenextjsDateProps {
     defaultDate?: Date;
@@ -13,15 +12,12 @@ export interface FenextjsDateProps {
 
 export type FenextjsDateValue = Date | number | string;
 
-export type FenextjsDateConstructor =
-    | FenextjsDateValue
-    | FenextjsDateProps;
+export type FenextjsDateConstructor = FenextjsDateValue | FenextjsDateProps;
 
 export class FenextjsDate {
-    public date : Date
+    public date: Date;
     private formats: FenextjsDateFormats = {};
-    private onCallback: undefined | ((date: Date) => void) =
-        undefined;
+    private onCallback: undefined | ((date: Date) => void) = undefined;
     private DateByMonth: Date[] = [];
     private DateByCalendar: Date[] = [];
 
@@ -36,7 +32,7 @@ export class FenextjsDate {
         } else {
             date = options?.defaultDate ?? new Date();
         }
-        this.date = date
+        this.date = date;
         if (!isDate) {
             this.formats = options?.formats ?? {};
             this.onCallback = options?.onCallback;

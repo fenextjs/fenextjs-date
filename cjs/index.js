@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FenextjsDate = void 0;
-class FenextjsDate extends Date {
+class FenextjsDate {
+    date;
     formats = {};
     onCallback = undefined;
     DateByMonth = [];
@@ -17,7 +18,7 @@ class FenextjsDate extends Date {
         else {
             date = options?.defaultDate ?? new Date();
         }
-        super(date);
+        this.date = date;
         if (!isDate) {
             this.formats = options?.formats ?? {};
             this.onCallback = options?.onCallback;
@@ -27,43 +28,43 @@ class FenextjsDate extends Date {
         this.onCallback = callback;
     }
     addTime(time) {
-        this.setTime(this.getTime() + time);
-        this.onCallback?.(this);
+        this.date.setTime(this.date.getTime() + time);
+        this.onCallback?.(this.date);
     }
     addMilliseconds(milliseconds) {
-        this.setMilliseconds(this.getMilliseconds() + milliseconds);
-        this.onCallback?.(this);
+        this.date.setMilliseconds(this.date.getMilliseconds() + milliseconds);
+        this.onCallback?.(this.date);
     }
     addSeconds(seconds) {
-        this.setSeconds(this.getSeconds() + seconds);
-        this.onCallback?.(this);
+        this.date.setSeconds(this.date.getSeconds() + seconds);
+        this.onCallback?.(this.date);
     }
     addMinutes(minutes) {
-        this.setMinutes(this.getMinutes() + minutes);
-        this.onCallback?.(this);
+        this.date.setMinutes(this.date.getMinutes() + minutes);
+        this.onCallback?.(this.date);
     }
     addHours(hours) {
-        this.setHours(this.getHours() + hours);
-        this.onCallback?.(this);
+        this.date.setHours(this.date.getHours() + hours);
+        this.onCallback?.(this.date);
     }
     addDate(date) {
-        this.setDate(this.getDate() + date);
-        this.onCallback?.(this);
+        this.date.setDate(this.date.getDate() + date);
+        this.onCallback?.(this.date);
     }
     addMonth(month) {
-        this.setMonth(this.getMonth() + month);
-        this.onCallback?.(this);
+        this.date.setMonth(this.date.getMonth() + month);
+        this.onCallback?.(this.date);
     }
     addYear(year) {
-        this.setFullYear(this.getFullYear() + year);
-        this.onCallback?.(this);
+        this.date.setFullYear(this.date.getFullYear() + year);
+        this.onCallback?.(this.date);
     }
     onFormat(options, date) {
         const formatter = new Intl.DateTimeFormat(options?.locales, options);
-        return formatter.format(new Date(date ?? this));
+        return formatter.format(new Date(date ?? this.date));
     }
     onFormatId(id, date) {
-        return this.onFormat(this.formats?.[id] ?? {}, date);
+        return this.onFormat(this.formats?.[id] ?? {}, date ?? this.date);
     }
     getDateByMonth() {
         return this.DateByMonth;
@@ -72,7 +73,7 @@ class FenextjsDate extends Date {
         this.DateByMonth = DateByMonth;
     }
     onGenerateDateByMonth(date) {
-        const DATE = new Date(date ?? this.getTime());
+        const DATE = new Date(date ?? this.date.getTime());
         DATE.setDate(1);
         const MONTH = DATE.getMonth();
         const DateByMonth = [];
@@ -90,7 +91,7 @@ class FenextjsDate extends Date {
         this.DateByCalendar = DateByCalendar;
     }
     onGenerateDateByCalendar(date) {
-        const D = new Date(date ?? this.getTime());
+        const D = new Date(date ?? this.date);
         const DATE = new Date(D.getTime());
         DATE.setDate(1);
         while (DATE.getDay() != 0) {

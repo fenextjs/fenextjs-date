@@ -1,23 +1,24 @@
 export interface FenextjsDateFormatOptions extends Intl.DateTimeFormatOptions {
     locales?: string | string[] | undefined;
 }
-export type FenextjsDateFormats<F extends string> = {
-    [id in F]?: FenextjsDateFormatOptions;
+export type FenextjsDateFormats = {
+    [id: string]: FenextjsDateFormatOptions;
 };
-export interface FenextjsDateProps<F extends string> {
+export interface FenextjsDateProps {
     defaultDate?: Date;
-    formats?: FenextjsDateFormats<F>;
-    onCallback?: (date: FenextjsDate<F>) => void;
+    formats?: FenextjsDateFormats;
+    onCallback?: (date: Date) => void;
 }
 export type FenextjsDateValue = Date | number | string;
-export type FenextjsDateConstructor<F extends string> = FenextjsDateValue | FenextjsDateProps<F>;
-export declare class FenextjsDate<F extends string> extends Date {
+export type FenextjsDateConstructor = FenextjsDateValue | FenextjsDateProps;
+export declare class FenextjsDate {
+    date: Date;
     private formats;
     private onCallback;
     private DateByMonth;
     private DateByCalendar;
-    constructor(options?: FenextjsDateConstructor<F>);
-    setOnCallback(callback: (date: FenextjsDate<F>) => void): void;
+    constructor(options?: FenextjsDateConstructor);
+    setOnCallback(callback: (date: Date) => void): void;
     addTime(time: number): void;
     addMilliseconds(milliseconds: number): void;
     addSeconds(seconds: number): void;
@@ -27,7 +28,7 @@ export declare class FenextjsDate<F extends string> extends Date {
     addMonth(month: number): void;
     addYear(year: number): void;
     onFormat(options: FenextjsDateFormatOptions, date?: FenextjsDateValue): string;
-    onFormatId(id: keyof F, date?: FenextjsDateValue): string;
+    onFormatId(id: string, date?: FenextjsDateValue): string;
     getDateByMonth(): Date[];
     setDateByMonth(DateByMonth: Date[]): void;
     onGenerateDateByMonth(date?: FenextjsDateValue): Date[];
