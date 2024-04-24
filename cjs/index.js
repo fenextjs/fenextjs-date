@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FenextjsDate = void 0;
 class FenextjsDate extends Date {
     formats = {};
+    onCallback = undefined;
     DateByMonth = [];
     DateByCalendar = [];
     constructor(options) {
@@ -19,31 +20,40 @@ class FenextjsDate extends Date {
         super(date);
         if (!isDate) {
             this.formats = options?.formats ?? {};
+            this.onCallback = options?.onCallback;
         }
     }
     addTime(time) {
         this.setTime(this.getTime() + time);
+        this.onCallback?.(this);
     }
     addMilliseconds(milliseconds) {
         this.setMilliseconds(this.getMilliseconds() + milliseconds);
+        this.onCallback?.(this);
     }
     addSeconds(seconds) {
         this.setSeconds(this.getSeconds() + seconds);
+        this.onCallback?.(this);
     }
     addMinutes(minutes) {
         this.setMinutes(this.getMinutes() + minutes);
+        this.onCallback?.(this);
     }
     addHours(hours) {
         this.setHours(this.getHours() + hours);
+        this.onCallback?.(this);
     }
     addDate(date) {
         this.setDate(this.getDate() + date);
+        this.onCallback?.(this);
     }
     addMonth(month) {
         this.setMonth(this.getMonth() + month);
+        this.onCallback?.(this);
     }
     addYear(year) {
         this.setFullYear(this.getFullYear() + year);
+        this.onCallback?.(this);
     }
     onFormat(options, date) {
         const formatter = new Intl.DateTimeFormat(options?.locales, options);

@@ -43,35 +43,35 @@ export class FenextjsDate<F extends string> extends Date {
 
     addTime(time: number) {
         this.setTime(this.getTime() + time);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addMilliseconds(milliseconds: number) {
         this.setMilliseconds(this.getMilliseconds() + milliseconds);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addSeconds(seconds: number) {
         this.setSeconds(this.getSeconds() + seconds);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addMinutes(minutes: number) {
         this.setMinutes(this.getMinutes() + minutes);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addHours(hours: number) {
         this.setHours(this.getHours() + hours);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addDate(date: number) {
         this.setDate(this.getDate() + date);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addMonth(month: number) {
         this.setMonth(this.getMonth() + month);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
     addYear(year: number) {
         this.setFullYear(this.getFullYear() + year);
-        this.onCallback?.(this)
+        this.onCallback?.(this);
     }
 
     onFormat(options: FenextjsDateFormatOptions, date?: FenextjsDateValue) {

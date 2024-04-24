@@ -7,11 +7,13 @@ export type FenextjsDateFormats<F extends string> = {
 export interface FenextjsDateProps<F extends string> {
     defaultDate?: Date;
     formats?: FenextjsDateFormats<F>;
+    onCallback?: (date: FenextjsDate<F>) => void;
 }
 export type FenextjsDateValue = Date | number | string;
 export type FenextjsDateConstructor<F extends string> = FenextjsDateValue | FenextjsDateProps<F>;
 export declare class FenextjsDate<F extends string> extends Date {
     private formats;
+    private onCallback;
     private DateByMonth;
     private DateByCalendar;
     constructor(options?: FenextjsDateConstructor<F>);
