@@ -23,6 +23,9 @@ class FenextjsDate extends Date {
             this.onCallback = options?.onCallback;
         }
     }
+    setOnCallback(callback) {
+        this.onCallback = callback;
+    }
     addTime(time) {
         this.setTime(this.getTime() + time);
         this.onCallback?.(this);

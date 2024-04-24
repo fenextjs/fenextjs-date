@@ -17,6 +17,7 @@ export declare class FenextjsDate<F extends string> extends Date {
     private DateByMonth;
     private DateByCalendar;
     constructor(options?: FenextjsDateConstructor<F>);
+    setOnCallback(callback: (date: FenextjsDate<F>) => void): void;
     addTime(time: number): void;
     addMilliseconds(milliseconds: number): void;
     addSeconds(seconds: number): void;
