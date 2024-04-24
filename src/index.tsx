@@ -7,6 +7,7 @@ export type FenextjsDateFormats<F extends string> = {
 export interface FenextjsDateProps<F extends string> {
     defaultDate?: Date;
     formats?: FenextjsDateFormats<F>;
+    onCallback?: (date: FenextjsDate<F>) => void;
 }
 
 export type FenextjsDateValue = Date | number | string;
@@ -17,6 +18,8 @@ export type FenextjsDateConstructor<F extends string> =
 
 export class FenextjsDate<F extends string> extends Date {
     private formats: FenextjsDateFormats<F> = {};
+    private onCallback: undefined | ((date: FenextjsDate<F>) => void) =
+        undefined;
     private DateByMonth: Date[] = [];
     private DateByCalendar: Date[] = [];
 
@@ -34,32 +37,41 @@ export class FenextjsDate<F extends string> extends Date {
         super(date);
         if (!isDate) {
             this.formats = options?.formats ?? {};
+            this.onCallback = options?.onCallback;
         }
     }
 
     addTime(time: number) {
         this.setTime(this.getTime() + time);
+        this.onCallback?.(this)
     }
     addMilliseconds(milliseconds: number) {
         this.setMilliseconds(this.getMilliseconds() + milliseconds);
+        this.onCallback?.(this)
     }
     addSeconds(seconds: number) {
         this.setSeconds(this.getSeconds() + seconds);
+        this.onCallback?.(this)
     }
     addMinutes(minutes: number) {
         this.setMinutes(this.getMinutes() + minutes);
+        this.onCallback?.(this)
     }
     addHours(hours: number) {
         this.setHours(this.getHours() + hours);
+        this.onCallback?.(this)
     }
     addDate(date: number) {
         this.setDate(this.getDate() + date);
+        this.onCallback?.(this)
     }
     addMonth(month: number) {
         this.setMonth(this.getMonth() + month);
+        this.onCallback?.(this)
     }
     addYear(year: number) {
         this.setFullYear(this.getFullYear() + year);
+        this.onCallback?.(this)
     }
 
     onFormat(options: FenextjsDateFormatOptions, date?: FenextjsDateValue) {
