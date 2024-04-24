@@ -1,29 +1,31 @@
+
 export interface FenextjsDateFormatOptions extends Intl.DateTimeFormatOptions {
     locales?: string | string[] | undefined;
 }
-export type FenextjsDateFormats<F extends string> = {
-    [id in F]?: FenextjsDateFormatOptions;
+export type FenextjsDateFormats = {
+    [id : string]: FenextjsDateFormatOptions;
 };
-export interface FenextjsDateProps<F extends string> {
+export interface FenextjsDateProps {
     defaultDate?: Date;
-    formats?: FenextjsDateFormats<F>;
-    onCallback?: (date: FenextjsDate<F>) => void;
+    formats?: FenextjsDateFormats;
+    onCallback?: (date: Date) => void;
 }
 
 export type FenextjsDateValue = Date | number | string;
 
-export type FenextjsDateConstructor<F extends string> =
+export type FenextjsDateConstructor =
     | FenextjsDateValue
-    | FenextjsDateProps<F>;
+    | FenextjsDateProps;
 
-export class FenextjsDate<F extends string> extends Date {
-    private formats: FenextjsDateFormats<F> = {};
-    private onCallback: undefined | ((date: FenextjsDate<F>) => void) =
+export class FenextjsDate {
+    public date : Date
+    private formats: FenextjsDateFormats = {};
+    private onCallback: undefined | ((date: Date) => void) =
         undefined;
     private DateByMonth: Date[] = [];
     private DateByCalendar: Date[] = [];
 
-    constructor(options?: FenextjsDateConstructor<F>) {
+    constructor(options?: FenextjsDateConstructor) {
         const isDate =
             options instanceof Date ||
             typeof options == "number" ||
@@ -34,56 +36,56 @@ export class FenextjsDate<F extends string> extends Date {
         } else {
             date = options?.defaultDate ?? new Date();
         }
-        super(date);
+        this.date = date
         if (!isDate) {
             this.formats = options?.formats ?? {};
             this.onCallback = options?.onCallback;
         }
     }
 
-    setOnCallback(callback: (date: FenextjsDate<F>) => void) {
+    setOnCallback(callback: (date: Date) => void) {
         this.onCallback = callback;
     }
 
     addTime(time: number) {
-        this.setTime(this.getTime() + time);
-        this.onCallback?.(this);
+        this.date.setTime(this.date.getTime() + time);
+        this.onCallback?.(this.date);
     }
     addMilliseconds(milliseconds: number) {
-        this.setMilliseconds(this.getMilliseconds() + milliseconds);
-        this.onCallback?.(this);
+        this.date.setMilliseconds(this.date.getMilliseconds() + milliseconds);
+        this.onCallback?.(this.date);
     }
     addSeconds(seconds: number) {
-        this.setSeconds(this.getSeconds() + seconds);
-        this.onCallback?.(this);
+        this.date.setSeconds(this.date.getSeconds() + seconds);
+        this.onCallback?.(this.date);
     }
     addMinutes(minutes: number) {
-        this.setMinutes(this.getMinutes() + minutes);
-        this.onCallback?.(this);
+        this.date.setMinutes(this.date.getMinutes() + minutes);
+        this.onCallback?.(this.date);
     }
     addHours(hours: number) {
-        this.setHours(this.getHours() + hours);
-        this.onCallback?.(this);
+        this.date.setHours(this.date.getHours() + hours);
+        this.onCallback?.(this.date);
     }
     addDate(date: number) {
-        this.setDate(this.getDate() + date);
-        this.onCallback?.(this);
+        this.date.setDate(this.date.getDate() + date);
+        this.onCallback?.(this.date);
     }
     addMonth(month: number) {
-        this.setMonth(this.getMonth() + month);
-        this.onCallback?.(this);
+        this.date.setMonth(this.date.getMonth() + month);
+        this.onCallback?.(this.date);
     }
     addYear(year: number) {
-        this.setFullYear(this.getFullYear() + year);
-        this.onCallback?.(this);
+        this.date.setFullYear(this.date.getFullYear() + year);
+        this.onCallback?.(this.date);
     }
 
     onFormat(options: FenextjsDateFormatOptions, date?: FenextjsDateValue) {
         const formatter = new Intl.DateTimeFormat(options?.locales, options);
-        return formatter.format(new Date(date ?? this));
+        return formatter.format(new Date(date ?? this.date));
     }
-    onFormatId(id: keyof F, date?: FenextjsDateValue) {
-        return this.onFormat(this.formats?.[id] ?? {}, date);
+    onFormatId(id: string, date?: FenextjsDateValue) {
+        return this.onFormat(this.formats?.[id] ?? {}, date ?? this.date);
     }
 
     getDateByMonth() {
@@ -93,7 +95,7 @@ export class FenextjsDate<F extends string> extends Date {
         this.DateByMonth = DateByMonth;
     }
     onGenerateDateByMonth(date?: FenextjsDateValue) {
-        const DATE = new Date(date ?? this.getTime());
+        const DATE = new Date(date ?? this.date.getTime());
         DATE.setDate(1);
         const MONTH = DATE.getMonth();
         const DateByMonth: Date[] = [];
@@ -111,7 +113,7 @@ export class FenextjsDate<F extends string> extends Date {
         this.DateByCalendar = DateByCalendar;
     }
     onGenerateDateByCalendar(date?: FenextjsDateValue) {
-        const D = new Date(date ?? this.getTime());
+        const D = new Date(date ?? this.date);
 
         const DATE = new Date(D.getTime());
         DATE.setDate(1);
