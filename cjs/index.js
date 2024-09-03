@@ -10,7 +10,14 @@ exports.FenextjsDateCompare = [
     "Month",
     "Seconds",
 ];
-exports.FenextjsDateCompareSymbol = ["==", "!=", ">", ">=", "<", "<="];
+exports.FenextjsDateCompareSymbol = [
+    "==",
+    "!=",
+    ">",
+    ">=",
+    "<",
+    "<=",
+];
 class FenextjsDate {
     date;
     formats = {};

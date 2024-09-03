@@ -13,7 +13,7 @@ export type FenextjsDateValue = Date | number | string;
 export type FenextjsDateConstructor = FenextjsDateValue | FenextjsDateProps;
 export declare const FenextjsDateCompare: readonly ["Date", "FullYear", "Hours", "Milliseconds", "Minutes", "Month", "Seconds"];
 export type FenextjsDateCompareType = (typeof FenextjsDateCompare)[number];
-export declare const FenextjsDateCompareSymbol: string[];
+export declare const FenextjsDateCompareSymbol: readonly ["==", "!=", ">", ">=", "<", "<="];
 export type FenextjsDateCompareSymbolType = (typeof FenextjsDateCompareSymbol)[number];
 export declare class FenextjsDate {
     date: Date;
@@ -54,6 +54,11 @@ export declare class FenextjsDate {
             [id in FenextjsDateCompareSymbolType]?: boolean;
         };
     }): {
-        [id in FenextjsDateCompareSymbolType]?: boolean;
+        "=="?: boolean | undefined;
+        "!="?: boolean | undefined;
+        ">"?: boolean | undefined;
+        ">="?: boolean | undefined;
+        "<"?: boolean | undefined;
+        "<="?: boolean | undefined;
     };
 }

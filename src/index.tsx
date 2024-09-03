@@ -26,7 +26,14 @@ export const FenextjsDateCompare = [
 
 export type FenextjsDateCompareType = (typeof FenextjsDateCompare)[number];
 
-export const FenextjsDateCompareSymbol = ["==", "!=", ">", ">=", "<", "<="] as const;
+export const FenextjsDateCompareSymbol = [
+    "==",
+    "!=",
+    ">",
+    ">=",
+    "<",
+    "<=",
+] as const;
 export type FenextjsDateCompareSymbolType =
     (typeof FenextjsDateCompareSymbol)[number];
 
@@ -186,14 +193,12 @@ export class FenextjsDate {
         compareSymbol: {
             [id in FenextjsDateCompareSymbolType]?: boolean;
         };
-    }){
+    }) {
         const d = new Date(date ?? this.date);
 
         const compareValue: {
             [id in FenextjsDateCompareSymbolType]?: boolean;
-        } = {
-
-        };
+        } = {};
 
         FenextjsDateCompare.forEach((e) => {
             const compareKey = e as FenextjsDateCompareType;
@@ -213,6 +218,6 @@ export class FenextjsDate {
                 );
             }
         });
-        return compareValue 
+        return compareValue;
     }
 }
