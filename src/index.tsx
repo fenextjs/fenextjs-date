@@ -137,4 +137,15 @@ export class FenextjsDate {
         this.DateByCalendar = DateByCalendar;
         return DateByCalendar;
     }
+    onValidateMinMax({date,max,min}:{min?:Date,max?:Date,date?:Date}){
+        const d = date ?? this.date 
+        let sw = true
+        if(min){
+            sw &&= min <= d 
+        }
+        if(max){
+            sw &&= max >= d 
+        }
+        return sw
+    }
 }
