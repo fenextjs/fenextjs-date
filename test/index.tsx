@@ -19,7 +19,7 @@ D.addDate(10)
 D.addDate(10)
 const C = D.onCompareDate({
     date:new Date("10-10-2000"),
-    dateCompare:new Date("10-11-2000"),
+    dateCompare:new Date("10-10-2000"),
     compareSymbol:{
         "!=":true,
         "<":true,
@@ -29,7 +29,7 @@ const C = D.onCompareDate({
         ">=":true
     },
     compare:{
-        // Date:true,
+        Date:true,
         FullYear:true,
         Month:true
     }

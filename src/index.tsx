@@ -15,32 +15,28 @@ export type FenextjsDateValue = Date | number | string;
 export type FenextjsDateConstructor = FenextjsDateValue | FenextjsDateProps;
 
 
-export type FenextjsDateCompare = "Date" |
-    "Day" |
-    "FullYear" |
-    "Hours" |
-    "Milliseconds" |
-    "Minutes" |
-    "Month" |
-    "Seconds" |
-    "Time" |
-    "TimezoneOffset" |
-    "UTCDate" |
-    "UTCDay" |
-    "UTCFullYear" |
-    "UTCHours" |
-    "UTCMilliseconds" |
-    "UTCMinutes" |
-    "UTCMonth" |
-    "UTCSeconds";
+export const FenextjsDateCompare = [
+    "Date",
+    "FullYear",
+    "Hours",
+    "Milliseconds",
+    "Minutes",
+    "Month",
+    "Seconds",
+] as const
 
-    export type FenextjsDateCompareSymbol = 
-        "=="|
-        "!="|
-        ">"|
-        ">="|
-        "<"|
-        "<=";
+export type FenextjsDateCompareType = typeof FenextjsDateCompare[number]
+
+
+export const FenextjsDateCompareSymbol = [
+    "==",
+    "!=",
+    ">",
+    ">=",
+    "<",
+    "<="
+]
+export type FenextjsDateCompareSymbolType = typeof FenextjsDateCompareSymbol[number]
 
 export class FenextjsDate {
     public date: Date;
@@ -184,41 +180,37 @@ export class FenextjsDate {
         }
         return sw;
     }
-    onCompareDate({ date, dateCompare, compare,compareSymbol }: {
+    onCompareDate({ date, dateCompare, compare, compareSymbol }: {
         date?: Date;
         dateCompare: Date;
         compare: {
-            [id in FenextjsDateCompare]?: boolean
+            [id in FenextjsDateCompareType]?: boolean
         }
         compareSymbol: {
-            [id in FenextjsDateCompareSymbol]?: boolean
+            [id in FenextjsDateCompareSymbolType]?: boolean
         }
     }) {
         const d = new Date(date ?? this.date)
 
         const compareValue: {
-            [id in FenextjsDateCompareSymbol]: boolean
-        } = { 
-            "!=":true,
-            "<":true,
-            "<=":true,
-            "==":true,
-            ">":true,
-            ">=":true
+            [id in FenextjsDateCompareSymbolType]?: boolean
+        } = {
         }
 
-        Object.keys(compare).forEach(e=>{
-            const compareKey = e as FenextjsDateCompare
-            if(compare[compareKey] !== true){
-                d[`set${compareKey}`](0)
-                dateCompare[`set${compareKey}`](0)
+        FenextjsDateCompare.forEach(e => {
+            const compareKey = e as FenextjsDateCompareType
+            if (compare[compareKey] !== true) {
+                const f = `set${compareKey}`
+                
+                d[f](0)
+                dateCompare[f](0)
             }
         })
-
-        Object.keys(compareSymbol).forEach(b=>{
-            const compareKeySymbol = b as FenextjsDateCompareSymbol
-            if(compareSymbol[compareKeySymbol] === true ){
-                compareValue[compareKeySymbol] &&= eval(`${d.getTime()} ${compareKeySymbol} ${dateCompare.getTime()}`)
+        
+        FenextjsDateCompareSymbol.forEach(b => {
+            const compareKeySymbol = b as FenextjsDateCompareSymbolType
+            if (compareSymbol[compareKeySymbol] === true) {
+                compareValue[compareKeySymbol] = eval(`${d.getTime()} ${compareKeySymbol} ${dateCompare.getTime()}`)
             }
         })
         return compareValue
