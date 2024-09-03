@@ -11,6 +11,10 @@ export interface FenextjsDateProps {
 }
 export type FenextjsDateValue = Date | number | string;
 export type FenextjsDateConstructor = FenextjsDateValue | FenextjsDateProps;
+export declare const FenextjsDateCompare: readonly ["Date", "FullYear", "Hours", "Milliseconds", "Minutes", "Month", "Seconds"];
+export type FenextjsDateCompareType = (typeof FenextjsDateCompare)[number];
+export declare const FenextjsDateCompareSymbol: string[];
+export type FenextjsDateCompareSymbolType = (typeof FenextjsDateCompareSymbol)[number];
 export declare class FenextjsDate {
     date: Date;
     private formats;
@@ -40,4 +44,16 @@ export declare class FenextjsDate {
         max?: Date;
         date?: Date;
     }): boolean;
+    onCompareDate({ date, dateCompare, compare, compareSymbol, }: {
+        date?: Date;
+        dateCompare: Date;
+        compare: {
+            [id in FenextjsDateCompareType]?: boolean;
+        };
+        compareSymbol: {
+            [id in FenextjsDateCompareSymbolType]?: boolean;
+        };
+    }): {
+        [x: string]: boolean | undefined;
+    };
 }

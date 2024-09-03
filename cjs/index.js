@@ -1,6 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FenextjsDate = void 0;
+exports.FenextjsDate = exports.FenextjsDateCompareSymbol = exports.FenextjsDateCompare = void 0;
+exports.FenextjsDateCompare = [
+    "Date",
+    "FullYear",
+    "Hours",
+    "Milliseconds",
+    "Minutes",
+    "Month",
+    "Seconds",
+];
+exports.FenextjsDateCompareSymbol = ["==", "!=", ">", ">=", "<", "<="];
 class FenextjsDate {
     date;
     formats = {};
@@ -126,6 +136,25 @@ class FenextjsDate {
             sw &&= max >= d;
         }
         return sw;
+    }
+    onCompareDate({ date, dateCompare, compare, compareSymbol, }) {
+        const d = new Date(date ?? this.date);
+        const compareValue = {};
+        exports.FenextjsDateCompare.forEach((e) => {
+            const compareKey = e;
+            if (compare[compareKey] !== true) {
+                const f = `set${compareKey}`;
+                d[f](0);
+                dateCompare[f](0);
+            }
+        });
+        exports.FenextjsDateCompareSymbol.forEach((b) => {
+            const compareKeySymbol = b;
+            if (compareSymbol[compareKeySymbol] === true) {
+                compareValue[compareKeySymbol] = eval(`${d.getTime()} ${compareKeySymbol} ${dateCompare.getTime()}`);
+            }
+        });
+        return compareValue;
     }
 }
 exports.FenextjsDate = FenextjsDate;
