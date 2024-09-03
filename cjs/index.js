@@ -144,8 +144,9 @@ class FenextjsDate {
         }
         return sw;
     }
-    onCompareDate({ date, dateCompare, compare, compareSymbol, }) {
+    onCompareDate({ date, dateCompare: dateCompareProps, compare, compareSymbol, }) {
         const d = new Date(date ?? this.date);
+        const dateCompare = new Date(dateCompareProps);
         const compareValue = {};
         exports.FenextjsDateCompare.forEach((e) => {
             const compareKey = e;

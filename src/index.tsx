@@ -181,7 +181,7 @@ export class FenextjsDate {
     }
     onCompareDate({
         date,
-        dateCompare,
+        dateCompare: dateCompareProps,
         compare,
         compareSymbol,
     }: {
@@ -195,6 +195,7 @@ export class FenextjsDate {
         };
     }) {
         const d = new Date(date ?? this.date);
+        const dateCompare = new Date(dateCompareProps);
 
         const compareValue: {
             [id in FenextjsDateCompareSymbolType]?: boolean;

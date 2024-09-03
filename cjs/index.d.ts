@@ -44,7 +44,7 @@ export declare class FenextjsDate {
         max?: Date;
         date?: Date;
     }): boolean;
-    onCompareDate({ date, dateCompare, compare, compareSymbol, }: {
+    onCompareDate({ date, dateCompare: dateCompareProps, compare, compareSymbol, }: {
         date?: Date;
         dateCompare: Date;
         compare: {
