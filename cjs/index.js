@@ -144,10 +144,17 @@ class FenextjsDate {
         }
         return sw;
     }
-    onCompareDate({ date, dateCompare: dateCompareProps, compare, compareSymbol, }) {
+    onCompareDate({ date, dateCompare: dateCompareProps, compare, }) {
         const d = new Date(date ?? this.date);
         const dateCompare = new Date(dateCompareProps);
-        const compareValue = {};
+        const compareValue = {
+            "!=": true,
+            "<": true,
+            "<=": true,
+            "==": true,
+            ">": true,
+            ">=": true,
+        };
         exports.FenextjsDateCompare.forEach((e) => {
             const compareKey = e;
             if (compare[compareKey] !== true) {
@@ -158,9 +165,7 @@ class FenextjsDate {
         });
         exports.FenextjsDateCompareSymbol.forEach((b) => {
             const compareKeySymbol = b;
-            if (compareSymbol[compareKeySymbol] === true) {
-                compareValue[compareKeySymbol] = eval(`${d.getTime()} ${compareKeySymbol} ${dateCompare.getTime()}`);
-            }
+            compareValue[compareKeySymbol] = eval(`${d.getTime()} ${compareKeySymbol} ${dateCompare.getTime()}`);
         });
         return compareValue;
     }

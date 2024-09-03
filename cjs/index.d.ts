@@ -44,21 +44,18 @@ export declare class FenextjsDate {
         max?: Date;
         date?: Date;
     }): boolean;
-    onCompareDate({ date, dateCompare: dateCompareProps, compare, compareSymbol, }: {
+    onCompareDate({ date, dateCompare: dateCompareProps, compare, }: {
         date?: Date;
         dateCompare: Date;
         compare: {
             [id in FenextjsDateCompareType]?: boolean;
         };
-        compareSymbol: {
-            [id in FenextjsDateCompareSymbolType]?: boolean;
-        };
     }): {
-        "=="?: boolean | undefined;
-        "!="?: boolean | undefined;
-        ">"?: boolean | undefined;
-        ">="?: boolean | undefined;
-        "<"?: boolean | undefined;
-        "<="?: boolean | undefined;
+        "==": boolean;
+        "!=": boolean;
+        ">": boolean;
+        ">=": boolean;
+        "<": boolean;
+        "<=": boolean;
     };
 }

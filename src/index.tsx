@@ -196,12 +196,12 @@ export class FenextjsDate {
         const compareValue: {
             [id in FenextjsDateCompareSymbolType]: boolean;
         } = {
-            "!=":true,
-            "<":true,
-            "<=":true,
-            "==":true,
-            ">":true,
-            ">=":true
+            "!=": true,
+            "<": true,
+            "<=": true,
+            "==": true,
+            ">": true,
+            ">=": true,
         };
 
         FenextjsDateCompare.forEach((e) => {
