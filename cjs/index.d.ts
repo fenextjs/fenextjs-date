@@ -35,4 +35,9 @@ export declare class FenextjsDate {
     getDateByCalendar(): Date[];
     setDateByCalendar(DateByCalendar: Date[]): void;
     onGenerateDateByCalendar(date?: FenextjsDateValue): Date[];
+    onValidateMinMax({ date, max, min, }: {
+        min?: Date;
+        max?: Date;
+        date?: Date;
+    }): boolean;
 }

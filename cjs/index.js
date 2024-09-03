@@ -116,6 +116,17 @@ class FenextjsDate {
         this.DateByCalendar = DateByCalendar;
         return DateByCalendar;
     }
+    onValidateMinMax({ date, max, min, }) {
+        const d = date ?? this.date;
+        let sw = true;
+        if (min) {
+            sw &&= min <= d;
+        }
+        if (max) {
+            sw &&= max >= d;
+        }
+        return sw;
+    }
 }
 exports.FenextjsDate = FenextjsDate;
 //# sourceMappingURL=index.js.map
