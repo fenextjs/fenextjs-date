@@ -186,7 +186,9 @@ export class FenextjsDate {
         compareSymbol: {
             [id in FenextjsDateCompareSymbolType]?: boolean;
         };
-    }) {
+    }): {
+        [id in FenextjsDateCompareSymbolType]?: boolean;
+    } {
         const d = new Date(date ?? this.date);
 
         const compareValue: {
@@ -211,6 +213,8 @@ export class FenextjsDate {
                 );
             }
         });
-        return compareValue;
+        return compareValue as {
+            [id in FenextjsDateCompareSymbolType]?: boolean;
+        };
     }
 }

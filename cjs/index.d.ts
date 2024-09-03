@@ -54,6 +54,6 @@ export declare class FenextjsDate {
             [id in FenextjsDateCompareSymbolType]?: boolean;
         };
     }): {
-        [x: string]: boolean | undefined;
+        [id in FenextjsDateCompareSymbolType]?: boolean;
     };
 }
