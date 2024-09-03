@@ -14,6 +14,34 @@ export type FenextjsDateValue = Date | number | string;
 
 export type FenextjsDateConstructor = FenextjsDateValue | FenextjsDateProps;
 
+
+export type FenextjsDateCompare = "Date" |
+    "Day" |
+    "FullYear" |
+    "Hours" |
+    "Milliseconds" |
+    "Minutes" |
+    "Month" |
+    "Seconds" |
+    "Time" |
+    "TimezoneOffset" |
+    "UTCDate" |
+    "UTCDay" |
+    "UTCFullYear" |
+    "UTCHours" |
+    "UTCMilliseconds" |
+    "UTCMinutes" |
+    "UTCMonth" |
+    "UTCSeconds";
+
+    export type FenextjsDateCompareSymbol = 
+        "=="|
+        "!="|
+        ">"|
+        ">="|
+        "<"|
+        "<=";
+
 export class FenextjsDate {
     public date: Date;
     private formats: FenextjsDateFormats = {};
@@ -155,5 +183,44 @@ export class FenextjsDate {
             sw &&= max >= d;
         }
         return sw;
+    }
+    onCompareDate({ date, dateCompare, compare,compareSymbol }: {
+        date?: Date;
+        dateCompare: Date;
+        compare: {
+            [id in FenextjsDateCompare]?: boolean
+        }
+        compareSymbol: {
+            [id in FenextjsDateCompareSymbol]?: boolean
+        }
+    }) {
+        const d = new Date(date ?? this.date)
+
+        const compareValue: {
+            [id in FenextjsDateCompareSymbol]: boolean
+        } = { 
+            "!=":true,
+            "<":true,
+            "<=":true,
+            "==":true,
+            ">":true,
+            ">=":true
+        }
+
+        Object.keys(compare).forEach(e=>{
+            const compareKey = e as FenextjsDateCompare
+            if(compare[compareKey] !== true){
+                d[`set${compareKey}`](0)
+                dateCompare[`set${compareKey}`](0)
+            }
+        })
+
+        Object.keys(compareSymbol).forEach(b=>{
+            const compareKeySymbol = b as FenextjsDateCompareSymbol
+            if(compareSymbol[compareKeySymbol] === true ){
+                compareValue[compareKeySymbol] &&= eval(`${d.getTime()} ${compareKeySymbol} ${dateCompare.getTime()}`)
+            }
+        })
+        return compareValue
     }
 }
