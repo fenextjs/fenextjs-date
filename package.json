@@ -1,6 +1,6 @@
 {
   "name": "fenextjs-date",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "",
   "main": "./cjs/index.js",
   "module": "./cjs/index.js",
@@ -19,7 +19,7 @@
     "remove-bun-lockb":"rm -r bun.lockb",
     "remove-node-module":"rm -r node_modules",
     "remove":"npm run remove-node-module && npm run remove-bun-lockb",
-    "update-package":"ncu -u !next",
+    "update-package": "ncu -u '/^fenextjs.*$/'",
     "update":"npm run update-package && npm run remove && npm run bun-i && npm run flb",
     "u":"npm run update",
     "test":"bun ./test"
@@ -51,6 +51,7 @@
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "6.7.2",
     "@typescript-eslint/parser": "6.7.2",
+    "npm-check-updates": "16.14.14",
     "eslint": "8.49.0",
     "prettier": "3.0.3",
     "ts-loader": "9.4.4",
