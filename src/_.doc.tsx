@@ -3,6 +3,7 @@ export default {
     name: "FenextjsDate",
     description: "Clase para manipular fechas, proporcionando métodos para sumar unidades de tiempo, formatear, validar y comparar fechas.",
     useImport: true,
+    useBreadcrumb:false,
     functions: [
         {
             id: "setOnCallback",
