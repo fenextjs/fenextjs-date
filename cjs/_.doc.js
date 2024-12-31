@@ -1,8 +1,9 @@
-export default {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
     id: "FenextjsDate",
     name: "FenextjsDate",
-    description:
-        "Clase para manipular fechas, proporcionando métodos para sumar unidades de tiempo, formatear, validar y comparar fechas.",
+    description: "Clase para manipular fechas, proporcionando métodos para sumar unidades de tiempo, formatear, validar y comparar fechas.",
     useImport: true,
     useBreadcrumb: false,
     functions: [
@@ -10,8 +11,7 @@ export default {
             id: "setOnCallback",
             name: "setOnCallback",
             type: "(callback: (date: Date) => void) => void",
-            description:
-                "Establece el callback que se ejecutará al modificar la fecha.",
+            description: "Establece el callback que se ejecutará al modificar la fecha.",
             props: [
                 {
                     id: "callback",
@@ -33,8 +33,7 @@ fenextDate.setOnCallback((date) => console.log("Fecha actualizada:", date));`,
             id: "addTime",
             name: "addTime",
             type: "(time: number) => void",
-            description:
-                "Agrega una cantidad de tiempo en milisegundos a la fecha actual.",
+            description: "Agrega una cantidad de tiempo en milisegundos a la fecha actual.",
             props: [
                 {
                     id: "time",
@@ -56,8 +55,7 @@ fenextDate.addTime(60000); // Agrega 1 minuto en milisegundos`,
             id: "addMilliseconds",
             name: "addMilliseconds",
             type: "(milliseconds: number) => void",
-            description:
-                "Agrega una cantidad específica de milisegundos a la fecha.",
+            description: "Agrega una cantidad específica de milisegundos a la fecha.",
             props: [
                 {
                     id: "milliseconds",
@@ -211,8 +209,7 @@ fenextDate.addYear(2); // Agrega 2 años`,
             id: "onFormat",
             name: "onFormat",
             type: "(options: FenextjsDateFormatOptions, date?: FenextjsDateValue) => string",
-            description:
-                "Devuelve la fecha formateada según las opciones dadas.",
+            description: "Devuelve la fecha formateada según las opciones dadas.",
             props: [
                 {
                     id: "options",
@@ -224,8 +221,7 @@ fenextDate.addYear(2); // Agrega 2 años`,
                     id: "date",
                     type: "FenextjsDateValue",
                     require: false,
-                    description:
-                        "Fecha para formatear; usa la fecha actual si no se proporciona.",
+                    description: "Fecha para formatear; usa la fecha actual si no se proporciona.",
                 },
             ],
             useImport: false,
@@ -242,8 +238,7 @@ console.log("Fecha formateada:", formattedDate);`,
             id: "onFormatId",
             name: "onFormatId",
             type: "(id: string, date?: FenextjsDateValue) => string",
-            description:
-                "Devuelve la fecha formateada usando un formato identificado por un ID.",
+            description: "Devuelve la fecha formateada usando un formato identificado por un ID.",
             props: [
                 {
                     id: "id",
@@ -255,8 +250,7 @@ console.log("Fecha formateada:", formattedDate);`,
                     id: "date",
                     type: "FenextjsDateValue",
                     require: false,
-                    description:
-                        "Fecha a formatear; usa la fecha actual si no se proporciona.",
+                    description: "Fecha a formatear; usa la fecha actual si no se proporciona.",
                 },
             ],
             useImport: false,
@@ -269,27 +263,23 @@ console.log("Fecha formateada con ID:", formattedDate);`,
                 },
             ],
         },
-
         {
             id: "getDateByMonth",
             name: "getDateByMonth",
             type: "(month: number, year?: number) => Date[]",
-            description:
-                "Devuelve un arreglo de fechas para un mes y año específicos.",
+            description: "Devuelve un arreglo de fechas para un mes y año específicos.",
             props: [
                 {
                     id: "month",
                     type: "number",
                     require: true,
-                    description:
-                        "Número del mes (1 para enero, 12 para diciembre).",
+                    description: "Número del mes (1 para enero, 12 para diciembre).",
                 },
                 {
                     id: "year",
                     type: "number",
                     require: false,
-                    description:
-                        "Año para obtener las fechas; usa el año actual si no se proporciona.",
+                    description: "Año para obtener las fechas; usa el año actual si no se proporciona.",
                 },
             ],
             useExample: [
@@ -311,15 +301,13 @@ console.log("Fechas de febrero:", dates);`,
                     id: "month",
                     type: "number",
                     require: true,
-                    description:
-                        "Número del mes (1 para enero, 12 para diciembre).",
+                    description: "Número del mes (1 para enero, 12 para diciembre).",
                 },
                 {
                     id: "year",
                     type: "number",
                     require: false,
-                    description:
-                        "Año para establecer la fecha; usa el año actual si no se proporciona.",
+                    description: "Año para establecer la fecha; usa el año actual si no se proporciona.",
                 },
             ],
             useExample: [
@@ -331,7 +319,6 @@ console.log("Fecha establecida:", fenextDate);`,
                 },
             ],
         },
-
         {
             id: "onGenerateDateByMonth",
             name: "onGenerateDateByMonth",
@@ -359,8 +346,7 @@ console.log("Fechas del mes:", dates);`,
             id: "getDateByCalendar",
             name: "getDateByCalendar",
             type: "() => Date[]",
-            description:
-                "Devuelve un arreglo de fechas que representa un calendario completo del mes actual, con días de la semana.",
+            description: "Devuelve un arreglo de fechas que representa un calendario completo del mes actual, con días de la semana.",
             props: [],
             useExample: [
                 {
@@ -375,15 +361,13 @@ console.log("Fechas del calendario:", calendarDates);`,
             id: "setDateByCalendar",
             name: "setDateByCalendar",
             type: "(calendarDates: Date[]) => void",
-            description:
-                "Establece las fechas del calendario con un arreglo de fechas.",
+            description: "Establece las fechas del calendario con un arreglo de fechas.",
             props: [
                 {
                     id: "calendarDates",
                     type: "Date[]",
                     require: true,
-                    description:
-                        "Un arreglo de objetos `Date` que representa las fechas del calendario completo.",
+                    description: "Un arreglo de objetos `Date` que representa las fechas del calendario completo.",
                 },
             ],
             useExample: [
@@ -400,15 +384,13 @@ console.log("Fechas del calendario establecidas:", fenextDate);`,
             id: "onGenerateDateByCalendar",
             name: "onGenerateDateByCalendar",
             type: "(date?: FenextjsDateValue) => Date[]",
-            description:
-                "Genera una lista de fechas para el mes y año específicos, con una vista tipo calendario.",
+            description: "Genera una lista de fechas para el mes y año específicos, con una vista tipo calendario.",
             props: [
                 {
                     id: "date",
                     type: "FenextjsDateValue",
                     require: false,
-                    description:
-                        "Fecha de referencia para generar el calendario.",
+                    description: "Fecha de referencia para generar el calendario.",
                 },
             ],
             useImport: false,
@@ -421,34 +403,29 @@ console.log("Fechas del calendario:", calendarDates);`,
                 },
             ],
         },
-
         {
             id: "onValidateMinMax",
             name: "onValidateMinMax",
             type: "(params: { min?: Date; max?: Date; date?: Date }) => boolean",
-            description:
-                "Valida si la fecha proporcionada está dentro del rango especificado por las fechas mínima y máxima.",
+            description: "Valida si la fecha proporcionada está dentro del rango especificado por las fechas mínima y máxima.",
             props: [
                 {
                     id: "min",
                     type: "Date",
                     require: false,
-                    description:
-                        "Fecha mínima que la fecha proporcionada debe cumplir. Si no se proporciona, no se valida el límite inferior.",
+                    description: "Fecha mínima que la fecha proporcionada debe cumplir. Si no se proporciona, no se valida el límite inferior.",
                 },
                 {
                     id: "max",
                     type: "Date",
                     require: false,
-                    description:
-                        "Fecha máxima que la fecha proporcionada debe cumplir. Si no se proporciona, no se valida el límite superior.",
+                    description: "Fecha máxima que la fecha proporcionada debe cumplir. Si no se proporciona, no se valida el límite superior.",
                 },
                 {
                     id: "date",
                     type: "Date",
                     require: false,
-                    description:
-                        "Fecha que se va a validar. Si no se proporciona, se usa la fecha actual de la instancia.",
+                    description: "Fecha que se va a validar. Si no se proporciona, se usa la fecha actual de la instancia.",
                 },
             ],
             useImport: false,
@@ -468,22 +445,19 @@ console.log(isValid);`,
             id: "onCompareDate",
             name: "onCompareDate",
             type: "(params: { dateCompare: Date; compare: { [id in FenextjsDateCompareType]?: boolean } }) => { [id in FenextjsDateCompareSymbolType]: boolean }",
-            description:
-                "Compara la fecha actual con otra fecha proporcionada, utilizando los criterios de comparación especificados.",
+            description: "Compara la fecha actual con otra fecha proporcionada, utilizando los criterios de comparación especificados.",
             props: [
                 {
                     id: "dateCompare",
                     type: "Date",
                     require: true,
-                    description:
-                        "La fecha con la que se va a comparar la fecha actual.",
+                    description: "La fecha con la que se va a comparar la fecha actual.",
                 },
                 {
                     id: "compare",
                     type: "{ [id in FenextjsDateCompareType]?: boolean }",
                     require: true,
-                    description:
-                        "Un objeto que contiene los criterios de comparación. Puede incluir propiedades como 'FullYear', 'Month', 'Date', etc.",
+                    description: "Un objeto que contiene los criterios de comparación. Puede incluir propiedades como 'FullYear', 'Month', 'Date', etc.",
                 },
             ],
             useImport: false,
@@ -501,3 +475,4 @@ console.log(compareResult);`,
         },
     ],
 };
+//# sourceMappingURL=_.doc.js.map
