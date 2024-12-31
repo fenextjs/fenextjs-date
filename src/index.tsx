@@ -141,8 +141,9 @@ export class FenextjsDate {
         }
 
         const DATEMAX = new Date(D.getTime());
-        DATEMAX.setMonth(D.getMonth() + 1);
         DATEMAX.setDate(1);
+        DATEMAX.setMonth(D.getMonth() + 1);
+        DATEMAX.setDate(DATEMAX.getDate() - 1);
         while (DATEMAX.getDay() != 6) {
             DATEMAX.setDate(DATEMAX.getDate() + 1);
         }
