@@ -473,6 +473,38 @@ console.log(compareResult);`,
                 },
             ],
         },
+        {
+            id: "onGetDifDate",
+            name: "onGetDifDate",
+            type: "(params: { dateCompare: Date; date?: Date;} ) => Date",
+            description: "Obtiene la difereciona entre 2 fechas, si no se proporciona date se usa el valor actual de la clase.",
+            props: [
+                {
+                    id: "dateCompare",
+                    type: "Date",
+                    require: true,
+                    description: "La fecha con la que se va obtener la diferencia con date o la fecha actual.",
+                },
+                {
+                    id: "date",
+                    type: "Date",
+                    require: true,
+                    description: "La fecha con la que se va obtener la diferencia con dateCompare.",
+                },
+            ],
+            useImport: false,
+            useExample: [
+                {
+                    text: "Obtiene la difereciona entre 2 fechas",
+                    content: `const fenextDate = new FenextjsDate(new Date());
+const difResult = fenextDate.onGetDifDate({ 
+    dateCompare: new Date(2023, 1, 1), 
+    date: new Date(2024, 1, 1), 
+}); 
+console.log(difResult);`,
+                },
+            ],
+        },
     ],
 };
 //# sourceMappingURL=_.doc.js.map
